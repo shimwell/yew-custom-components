@@ -1,14 +1,11 @@
 use std::collections::HashSet;
-use yew::prelude::*;
-use yew_router::prelude::*;
 use yew::{Callback, classes, function_component, Html, html, TargetCast, use_reducer, use_state};
 use serde::Serialize;
-use web_sys::{HtmlInputElement, InputEvent, MouseEvent};
+use web_sys::{HtmlInputElement, InputEvent};
 use yew_hooks::use_set;
 use yew_custom_components::table::{Options, Table};
 use yew_custom_components::table::types::{ColumnBuilder, TableData};
 
-use super::Route;
 
 
 #[function_component(Home)]
@@ -32,15 +29,6 @@ pub fn home() -> Html {
             acc
         }
     });
-
-    // New data input variables
-    let new_id = use_state(|| 0);
-    let new_name = use_state(|| None::<String>);
-    let new_value = use_state(|| 0);
-    let id = *new_id;
-    let name = (*new_name).clone();
-    let value = *new_value;
-
 
     // Column definition
     let columns = vec![
@@ -96,7 +84,7 @@ pub fn home() -> Html {
 
     html!(
         <>
-            <h1>{"Table Example"}</h1>
+            <h1>{"Minimal table Example"}</h1>
             <div class="flex-grow-1 p-2 input-group mb-2">
                 <span class="input-group-text">
                     <i class="fas fa-search"></i>

@@ -27,18 +27,6 @@ impl yew::Reducible for Theme {
 }
 
 impl Theme {
-    pub fn set_dark(&self, dark: bool) {
-        LocalStorage::set(DARK_KEY, Some(dark)).expect("failed to set");
-        match DARK.write() {
-            Ok(mut w) => {
-                *w = Some(dark);
-            }
-            Err(e) => {
-                error!("Error setting dark: {:?}", e);
-            }
-        }
-    }
-
     pub fn get_dark(&self) -> bool {
         match DARK.write() {
             Ok(mut r) => match r.clone() {
@@ -53,10 +41,5 @@ impl Theme {
                 true
             }
         }
-    }
-
-    pub fn toggle_dark(&self) {
-        let dark = !self.get_dark();
-        self.set_dark(dark);
     }
 }
