@@ -3,7 +3,6 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 mod home;
-mod header;
 
 #[derive(Routable, PartialEq, Eq, Clone, Debug)]
 pub enum Route {
@@ -41,7 +40,6 @@ pub fn app() -> Html {
     html! {
         <ContextProvider<UseStateHandle<crate::types::theme::Theme>> context={ctx}>
             <HashRouter>
-                <header::Header />
                 <main>
                     <div class="container mt-2">
                         <Switch<Route> render={switch} />
