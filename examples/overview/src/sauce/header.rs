@@ -39,9 +39,7 @@ pub fn header() -> Html {
         <>
             <nav class={classes!("navbar", "navbar-expand-lg", "sticky-top", "shadow")} aria-label="main navigation">
                 <div class="container-fluid">
-                    <Link<Route> to={Route::Home} classes="navbar-brand fs-2">
-                        { "Yew Custom Components" }
-                    </Link<Route>>
+
                     <div class="container-fluid">
                         <button class={classes!("navbar-toggler", active_class.1)} type="button" onclick={onclick.clone()} aria-controls="navbarSupportedContent" aria-expanded={(!activated).to_string()} aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
