@@ -53,11 +53,6 @@ pub fn header() -> Html {
                                         { "Table" }
                                     </Link<Route>>
                                 </li>
-                                <li class="nav-item">
-                                    <Link<Route> classes={classes!("nav-link" , is_active(&route, &[Route::Tabs]))} to={Route::Tabs}>
-                                        { "Tabs" }
-                                    </Link<Route>>
-                                </li>
                             </ul>
                             <ul class="navbar-nav">
                             {

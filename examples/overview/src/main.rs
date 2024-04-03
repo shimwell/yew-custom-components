@@ -1,7 +1,6 @@
 mod types;
 mod sauce;
 mod table;
-mod tabs;
 
 fn main() {
     console_error_panic_hook::set_once();
