@@ -9,8 +9,6 @@ mod header;
 pub enum Route {
     #[at("/")]
     Home,
-    #[at("/table")]
-    Table,
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -59,6 +57,5 @@ fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html!( <home::Home /> ),
         Route::NotFound => html!( <home::Home /> ),
-        Route::Table => html!( <crate::table::TableExample /> )
     }
 }

@@ -46,11 +46,6 @@ pub fn header() -> Html {
                         </button>
                         <div class={classes!("collapse","navbar-collapse", active_class.0)} id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <Link<Route> classes={classes!("nav-link" , is_active(&route, &[Route::Table]))} to={Route::Table}>
-                                        { "Table" }
-                                    </Link<Route>>
-                                </li>
                             </ul>
                             <ul class="navbar-nav">
                             {
