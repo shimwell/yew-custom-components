@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-use std::collections::HashMap;
 use yew::prelude::*;
 use yew_router::prelude::*;
 use yew::{Callback, classes, function_component, Html, html, TargetCast, use_reducer, use_state};
@@ -95,117 +94,8 @@ pub fn home() -> Html {
         })
     };
 
-    // Handle new data input
-    let oninput_id = {
-        let old_id = id;
-        let id = new_id.clone();
-        Callback::from(move |e: InputEvent| {
-            let input: HtmlInputElement = e.target_unchecked_into();
-            if input.value().is_empty() {
-                id.set(0);
-            } else {
-                if let Ok(v) = input.value().parse::<i32>() {
-                    id.set(v);
-                } else {
-                    id.set(old_id);
-                }
-            }
-        })
-    };
-
-    // Handle new data input
-    let oninput_value = {
-        let old_value = value;
-        let value = new_value.clone();
-        Callback::from(move |e: InputEvent| {
-            let input: HtmlInputElement = e.target_unchecked_into();
-            if input.value().is_empty() {
-                value.set(0);
-            } else {
-                if let Ok(v) = input.value().parse::<i32>() {
-                    value.set(v);
-                } else {
-                    value.set(old_value);
-                }
-            }
-        })
-    };
-
-    // Handle new data input
-    let oninput_name = {
-        let name = new_name.clone();
-        Callback::from(move |e: InputEvent| {
-            let input: HtmlInputElement = e.target_unchecked_into();
-            if input.value().is_empty() {
-                name.set(None);
-            } else {
-                name.set(Some(input.value()));
-            }
-        })
-    };
-
-    // Handle adding new data
-    let onclick = {
-        let dispatcher = data.dispatcher().clone();
-        let id = new_id.clone();
-        let name = new_name.clone();
-        let value = new_value.clone();
-        Callback::from(move |e: MouseEvent| {
-            e.prevent_default();
-            if let Some(n) = (*name).clone() {
-                dispatcher.dispatch(crate::types::mock_data::DataActions::AddData((*id, n, *value as i64)));
-                id.set(0);
-                name.set(None);
-                value.set(0);
-            }
-        })
-    };
-
-    // Randomize data values in the table
-    let onclick_random = {
-        let dispatcher = data.dispatcher().clone();
-        Callback::from(move |e: MouseEvent| {
-            e.prevent_default();
-            dispatcher.dispatch(crate::types::mock_data::DataActions::RandomizeData);
-        })
-    };
-
-    let theme = use_context::<UseStateHandle<crate::types::theme::Theme>>().expect("no ctx found");
-    let active = use_state(|| false);
-    let location = use_location().unwrap();
-    let route = Route::from_path(location.path(), &HashMap::new());
-    let active_class = if *active {
-        (Some("show"), None)
-    } else {
-        (None, Some("collapsed"))
-    };
-
-    let activated = *active;
-
-    // let onclick = { Callback::from(move |_| active.set(!*active)) };
-
-    let theme_class = if (*theme).get_dark() {
-        "fa-solid"
-    } else {
-        "fa-regular"
-    };
-
-    let onclick_theme = {
-        Callback::from(move |_| {
-            theme.set(crate::types::theme::Theme {
-                dark: !theme.get_dark(),
-            });
-            theme.toggle_dark();
-        })
-    };
-
     html!(
         <>
-            <li class="nav-item">
-                <a class="nav-link" onclick={onclick_theme}>
-                    <i class={classes!(theme_class, "fa-sun")}></i>
-                </a>
-            </li>
             <h1>{"Table Example"}</h1>
             <div class="flex-grow-1 p-2 input-group mb-2">
                 <span class="input-group-text">
